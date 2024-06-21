@@ -1,0 +1,114 @@
+<%- include('../header') %>
+  <%- include('../sidebar') %>
+
+
+    <main id="main" class="main">
+
+      <div class="pagetitle">
+        <h1>Brand</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item">Brand</li>
+            <li class="breadcrumb-item active">Add</li>
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+
+
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Add Brand</h5>
+                <% if (errors) { %>
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <ul class="list-group" style="background: none;">
+                      <% errors.map(function(error,i) { %>
+                        <li class="list-group-item" style="background: none;">
+                          <span>
+                            <%= i+1 %> -
+                          </span>
+                          <%= error %>
+                        </li>
+                        <% }); %>
+                    </ul>
+                  </div>
+                  <% } %>
+
+
+                    <!-- Multi Columns Form -->
+
+                    <form action="/Brand/AddBrandOperation" method="post" enctype="multipart/form-data">
+                      <div class="col-md-12">
+                        <label for="inputName5" class="form-label">Title</label>
+
+
+                        <input type="text" id="title" name="title" value="<%= Prevdata && Prevdata.title %>"
+                          class="form-control" />
+
+
+                      </div>
+
+                      <div class="col-12">
+                        <label for="inputAddress5" class="form-label">Descriptions</label>
+
+
+                        <textarea class="form-control" id="description"
+                          name="description"><%= Prevdata && Prevdata.description %></textarea>
+                      </div>
+
+                      <div class="col-12">
+                        <label for="inputAddress5" class="form-label">Brand logo</label>
+
+
+                        <input class="form-control" type="file" id="brandlogo" name="ProductImages">
+                      </div>
+
+                      <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="reset" class="btn btn-secondary">Reset</button>
+                      </div>
+                    </form><!-- End Multi Columns Form -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <main id="main" class="main">
+      <div>
+        <h1>Add Brand Views..</h1>
+        <pre><%= JSON.stringify(errors, null, 2) %></pre>
+        <pre><%= JSON.stringify(Prevdata, null, 2) %></pre>
+
+
+
+        <div>
+          <form action="/Brand/AddBrandOperation" method="post" enctype="multipart/form-data">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="<%= Prevdata && Prevdata.title %>" /><br><br>
+            <label for="description">Description:</label>
+
+
+            <textarea id="description" name="description"><%= Prevdata && Prevdata.description %></textarea><br>
+            <br />
+
+            <label for="title">Brand Logo :</label>
+            <input type="file" id="brandlogo" name="ProductImages"><br><br>
+            <br />
+            <input type="submit" value="Add Brand" />
+          </form>
+
+        </div>
+
+
+      </div>
+    </main>
+
+
+
+    <%- include('../footer') %>

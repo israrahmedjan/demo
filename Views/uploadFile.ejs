@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+</head>
+<body>
+    <h1>Upload a Profile Picture</h1>
+    <form action="/Products/FileUploadOperations" method="post" enctype="multipart/form-data">
+        <label for="profilePic">Choose a profile picture:</label><br>
+       <input type="text" id="username" name="username" />
+        <input type="file" id="profilePic" name="profilePic"><br><br>
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<%- include('../header') %>
+  <%- include('../sidebar') %>
+
+    <main id="main" class="main">
+      <div>
+        <h1>Add Product Views..</h1>
+        <div>
+          <% if (messages.success) { %>
+            <div class="alert alert-success">
+              <%= messages.success %>
+            </div>
+            <% } %>
+        </div>
+
+        <div>
+
+          <% if (errors) { %>
+            <div class="error-message">
+              <p>
+                <%= errors %>
+              </p>
+
+              <pre><%= JSON.stringify(errors, null, 2) %></pre>
+            </div>
+            <% } %>
+        </div>
+
+        <div>
+          <h2>Previous Data</h2>
+          <% if (prevouseData) { %>
+            <div class="error-message">
+
+
+              <pre><%= JSON.stringify(prevouseData, null, 2) %></pre>
+            </div>
+            <% } %>
+        </div>
+
+
+
+        <div>
+
+          <form action="/Products/AddProductOperation" enctype="multipart/form-data" method="post">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="<%= prevouseData.title && prevouseData.title %>">
+            <br><br>
+
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price"
+              value="<%= prevouseData.price && prevouseData.price %>"><br><br>
+
+            <label for="description">Description:</label>
+            <textarea id="description"
+              name="description"><%= prevouseData.description && prevouseData.description %></textarea><br><br>
+
+            <label for="category">Category :</label>
+
+            <!-- ... -->
+
+
+            <% if (Category.length> 0) { %>
+              <select id="category" name="category">
+
+                <% if(!prevouseData.category) { %>
+                  <option value="">Select Category</option>
+                  <% } %>
+                    <% Category.map((cat, i)=> { %>
+
+                      <option value=<%=cat._id %>><%= cat.title %>
+                      </option>
+                      <% }) %>
+              </select>
+              <% } else { %>
+                <p>Category not Availiable <a href="/category/Add">Add Category</a></p>
+                <% } %>
+
+
+                  <br />
+                  <br />
+                  <label for="category">Category :</label>
+
+
+                  <% if (Brand.length> 0) { %>
+                    <select id="Brand" name="Brand">
+
+                      <% if(!prevouseData.Brand) { %>
+                        <option value="">Select Brand</option>
+                        <% } %>
+                          <% Brand.map((brd, i)=> { %>
+
+                            <option value=<%=brd._id %>><%= brd.title %>
+                            </option>
+                            <% }) %>
+                    </select>
+                    <% } else { %>
+                      <p>Category not Availiable <a href="/Brand/Add">Add Brand</a></p>
+                      <% } %>
+
+
+                        <br />
+                        <br />
+
+
+
+                        <label for="profilePic">Choose a profile picture:</label><br>
+                        <input type="file" id="profilePic" name="profilePic" accept="image/*" multiple><br><br>
+                        <div id="file-input-container">
+                          <button id="add-file-button">Add other images</button>
+                        </div>
+
+                        <br />
+
+                        <input type="submit" value="Add Product" />
+          </form>
+
+        </div>
+
+
+      </div>
+    </main>
+
+
+
+    <%- include('../footer') %>

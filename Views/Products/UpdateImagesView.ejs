@@ -1,0 +1,198 @@
+<%- include('../header') %>
+
+  <%- include('../sidebar') %>
+
+
+    <main id="main" class="main">
+
+      <div class="pagetitle">
+        <h1>Update product images</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item">Product</li>
+            <li class="breadcrumb-item active">Update Images</li>
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Main image</h5>
+                <!-- Default Table -->
+                <div style="border:1px solid red;">
+                  <form action="" id="fileForm_0" type="post" onsubmit="UploadMainImageJS(event,this)"
+                    enctype="multipart/form-data">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col" colspan="4">Main Image</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">&nbsp;</th>
+                          <td valign="middle"><img src="<%= Product.thumbnail %>" id="main_image_scr" width="100"
+                              height="100" />
+                            <input type="hidden" name="url" id="url" value=<%=Ajax_link.MainImageLink &&
+                              Ajax_link.MainImageLink %> />
+
+                          </td>
+                          <td valign="middle">
+                            <input type="file" id="ProductImages" name="ProductImages">
+                            <input type="hidden" name="oldImageUrl" value="<%= Product.thumbnail %>" />
+                            <input type="hidden" id="productId" name="productId" value="<%= Product._id %>">
+                          </td>
+                          <td valign="middle">
+                            <div class="spinner-border" style="display: none;" role="status">
+                              <span class="visually-hidden">Loading...</span>
+                            </div>
+                          </td>
+                          <td valign="middle"> </span>
+                            <button class="btn btn-primary" type="submit"><i class="bi bi-pen"></i> Upload</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </form>
+                </div>
+                <!-- End Default Table Example -->
+
+
+                <!-- Default Table -->
+                <div style="border:1px solid rgb(0, 255, 213);">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col" colspan="4">Sub Images</th>
+
+                      </tr>
+                    </thead>
+
+                    <% if(Product.images.length>0) {
+                      %>
+                      <tbody>
+                        <% Product.images.forEach((imageUrl, index)=> { %>
+                          <form action="" id="UoloadSubImageForm" type="post" onsubmit="UploadSubImagesJS(event,this)"
+                            enctype="multipart/form-data">
+                            <tr>
+                              <th scope="row">&nbsp;</th>
+                              <td valign="middle">
+                                <img src="<%=imageUrl %>" id="image_link_<%= index %>" width="75" height="75" />
+
+                                <input type="hidden" name="url" id="url_<%=index%>" value=<%=Ajax_link.SubImageLink &&
+                                  Ajax_link.SubImageLink %>
+                                />
+                              </td>
+                              <td valign="middle">
+
+                                <input type="file" id="ProductImages" name="ProductImages">
+                                <input type="hidden" name="oldImageUrl" value="<%=imageUrl %>" />
+                                <input type="hidden" id="ImageIndex" name="ImageIndex" value="<%=index%>" />
+                                <input type="hidden" id="productId" name="productId" value="<%= Product._id %>">
+
+                              </td>
+                              <td valign="middle">
+                                <div class="spinner-border-main_<%=index%>" style="display: none;">
+                                  <div class="spinner-border" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                  </div>
+                                </div>
+                              </td>
+                              <td valign="middle"> </span>
+                                <button class="btn btn-primary" type="submit"><i class="bi bi-pen"></i> Upload</button>
+                              </td>
+                            </tr>
+
+
+                            <% %>
+                          </form>
+                          <% }) %>
+                      </tbody>
+                      <% } %>
+
+                  </table>
+                </div>
+                <!-- End Default Table Example -->
+
+              </div>
+            </div>
+
+
+
+
+            <div>
+
+
+              <h1>Update Image Views...</h1>
+              <pre><%= JSON.stringify(Ajax_link, null, 2) %></pre>
+
+              <h1>Update Main Image</h1>
+
+              <div style="border:1px solid red;">
+                <form action="" id="fileForm_0" type="post" onsubmit="UploadMainImageJS(event,this)"
+                  enctype="multipart/form-data">
+                  <img src="<%= Product.thumbnail %>" id="main_image_scr" width="75" height="75" />
+                  <input type="hidden" name="url" id="url" value=<%=Ajax_link.MainImageLink && Ajax_link.MainImageLink
+                    %>
+                  />
+
+                  <input type="file" id="ProductImages" name="ProductImages">
+                  <input type="hidden" name="oldImageUrl" value="<%= Product.thumbnail %>" />
+                  <input type="hidden" id="productId" name="productId" value="<%= Product._id %>">
+                  <span class="loadingmain"></span>
+                  <button type="submit">Upload</button>
+                </form>
+              </div>
+
+
+              <br>
+              <div style="border:1px solid green;">
+                <h1>Other Additional Images.</h1>
+
+
+                <% if(Product.images.length>0) {
+
+                  Product.images.forEach((imageUrl, index) => { -%>
+                  <div>
+                    <form action="" id="UoloadSubImageForm" type="post" onsubmit="UploadSubImagesJS(event,this)"
+                      enctype="multipart/form-data">
+                      <img src="<%=imageUrl %>" id="image_link_<%= index %>" width="75" height="75" />
+
+                      <input type="hidden" name="url" id="url" value=<%=Ajax_link.SubImageLink && Ajax_link.SubImageLink
+                        %>
+                      />
+                      <span class="loading"></span>
+                      <input type="file" id="ProductImages" name="ProductImages">
+                      <input type="hidden" name="oldImageUrl" value="<%=imageUrl %>" />
+                      <input type="hidden" name="ImageIndex" value=<%=index %> />
+                      <input type="hidden" id="productId" name="productId" value="<%= Product._id %>">
+                      <button type="submit">Upload</button>
+                    </form>
+                  </div>
+                  <br>
+                  <% }); %>
+                    <% } else { %>
+                      <p>No image found</p>
+                      <% } %>
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <main id="main" class="main">
+
+      </main>
+
+
+
+      <%- include('../footer') %>

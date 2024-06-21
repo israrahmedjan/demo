@@ -1,0 +1,99 @@
+<%- include('../header') %>
+  <%- include('../sidebar') %>
+
+
+    <main id="main" class="main">
+
+      <div class="pagetitle">
+        <h1>Form Layouts</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item">Brand</li>
+            <li class="breadcrumb-item active">Edit</li>
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+
+
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Multi Columns Form</h5>
+
+                <!-- Multi Columns Form -->
+
+                <form action="/Brand/EditBrandOperations" method="post">
+                  <div class="col-md-12">
+                    <label for="inputName5" class="form-label">Title</label>
+
+
+                    <input type="text" id="title" name="title" value="<%=  Brand.title %>" class="form-control">
+                    <input type="hidden" id="BrandId" name="BrandId" value="<%= Brand &&  Brand.id %>">
+
+                  </div>
+
+                  <div class="col-12">
+                    <label for="inputAddress5" class="form-label">Descriptions</label>
+
+
+                    </textarea>
+                    <textarea class="form-control" id="description" name="description"><%= Brand.description && Brand.description %>
+                    </textarea>
+
+                  </div>
+                  <div class="col-12 mt-3">
+                    <label for="inputAddress5" class="form-label">Brand Logo</label>
+                    <input type="hidden" id="oldbrandlogo" name="oldbrandlogo"
+                      value="<%=  Brand && Brand.image_url %>" />
+                    <img src="<%= Brand.brand_image && Brand.brand_image %>" width="100" height="100" />
+                  </div>
+
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                  </div>
+                </form><!-- End Multi Columns Form -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <main id="main" class="main">
+      <div>
+        <h1>Add Category Views..</h1>
+        <pre><%= JSON.stringify(Brand, null, 2) %></pre>
+        <div>
+          <form action="/Brand/EditBrandOperations" method="post">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="<%=  Brand.title %>"><br><br>
+            <input type="hidden" id="BrandId" name="BrandId" value="<%= Brand &&  Brand.id %>"><br><br>
+            <label for="description">Description:</label>
+            <textarea id="description"
+              name="description"><%= Brand.description && Brand.description %></textarea><br><br>
+            <br />
+            <br />
+
+            <input type="hidden" id="oldbrandlogo" name="oldbrandlogo" value="<%=  Brand && Brand.image_url %>" />
+            <label for="title">Brand Logo :</label>
+            <img src="<%= Brand.brand_image && Brand.brand_image %>" width="100" height="100" />
+            <!-- <input type="file" id="brandlogo" name="ProductImages"><br><br>
+ -->
+            <br />
+            <br />
+            <input type="submit" value="Update Brand" />
+          </form>
+
+        </div>
+
+
+      </div>
+    </main>
+
+
+
+    <%- include('../footer') %>

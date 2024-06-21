@@ -1,0 +1,80 @@
+<%- include('../header') %>
+  <%- include('../sidebar') %>
+
+    <main id="main" class="main">
+
+      <div class="pagename">
+        <h1>Form Layouts</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item">Forms</li>
+            <li class="breadcrumb-item active">Layouts</li>
+          </ol>
+        </nav>
+      </div><!-- End Page name -->
+
+
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-name">Multi Columns Form</h5>
+
+                <!-- Multi Columns Form -->
+
+                <form action="/Category/EditCategoryOperations" method="post">
+                  <div class="col-md-12">
+                    <label for="inputName5" class="form-label">name</label>
+                    <input type="text" id="name" name="name" value="<%=  Category.name %>" class="form-control"
+                      id="inputName5">
+                    <input type="hidden" id="categoryId" name="categoryId" value="<%=  Category.id %>">
+                  </div>
+
+                  <div class="col-12">
+                    <label for="inputAddress5" class="form-label">urls</label>
+
+                    <textarea class="form-control" id="url" name="url"><%= Category.url %>
+                    </textarea>
+                  </div>
+
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                  </div>
+                </form><!-- End Multi Columns Form -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <main id="main" class="main">
+      <div>
+        <h1>Add Category Views..</h1>
+        <pre><%= JSON.stringify(Category, null, 2) %></pre>
+        <div>
+          <form action="/Category/EditCategoryOperations" method="post">
+            <label for="name">name:</label>
+            <input type="text" id="name" name="name" value="<%=  Category.name %>"><br><br>
+            <input type="hidden" id="categoryId" name="categoryId" value="<%=  Category.id %>"><br><br>
+            <label for="url">url:</label>
+            <textarea id="url" name="url"><%= Category.url %></textarea><br><br>
+
+            <br />
+            <br />
+            <input type="submit" value="Update Category" />
+          </form>
+
+        </div>
+
+
+      </div>
+    </main>
+
+
+
+    <%- include('../footer') %>

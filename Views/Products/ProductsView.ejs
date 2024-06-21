@@ -1,0 +1,174 @@
+<%- include('../header') %>
+  <%- include('../sidebar') %>
+
+
+    <main id="main" class="main">
+
+
+      <% if (messages.success) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <i class="bi bi-check-circle me-1"></i>
+          <%= messages.success %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <% } %>
+
+
+          <div class="pagetitle">
+            <h1>Products</h1>
+
+            <a style="float: right;" href="/Products/Add"><i class="bi bi-file-earmark-plus"></i>
+              New Product</a>
+            <nav>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">Product</li>
+                <li class="breadcrumb-item active">Data</li>
+              </ol>
+            </nav>
+
+
+          </div><!-- End Page Title -->
+
+          <section class="section">
+            <div class="row">
+              <div class="col-lg-12">
+
+                <div class="card">
+                  <div class="card-body">
+                    <div class="left-right-cl">
+                      <h5 class="card-title">Products <a style="float: right;" href="/Products/Add"><i
+                            class="bi bi-file-earmark-plus"></i>
+                          New Product</a> </h5>
+                    </div>
+
+                    <!-- Table with stripped rows -->
+                    <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                      <div class="datatable-top">
+                        <div class="datatable-dropdown">
+                          <label>
+                            <select class="datatable-selector" name="per-page">
+                              <option value="5">5</option>
+                              <option value="10" selected="">10</option>
+                              <option value="15">15</option>
+                              <option value="-1">All</option>
+                            </select> entries per page
+                          </label>
+                        </div>
+                        <div class="datatable-search">
+                          <input class="datatable-input" placeholder="Search..." type="search" name="search"
+                            title="Search within table">
+                        </div>
+                      </div>
+                      <div class="datatable-container">
+                        <table class="table datatable datatable-table">
+                          <thead>
+                            <tr>
+                              <th data-sortable="true">Sr No.</th>
+                              <th data-sortable="true">Title</th>
+                              <th data-sortable="true">View</th>
+                              <th data-sortable="true">Price</th>
+                              <th data-format="YYYY/DD/MM" data-sortable="true" data-type="date">Category</th>
+
+                              <th colspan="2" class="red text-center">Action</th>
+
+                            </tr>
+                          </thead>
+                          <% if (products.length> 0) { %>
+                            <% products.map((product, i)=> { %>
+                              <tbody>
+                                <tr data-index="0">
+                                  <td>
+                                    <%= i+1 %>
+                                  </td>
+                                  <td>
+                                    <%= product.title %>
+                                      <!-- <pre>
+                                      <%= JSON.stringify(product,null,2); %>
+                                    </pre> -->
+                                  </td>
+                                  <td>
+                                    <a class="btn btn-primary" data-bs-toggle="modal"
+                                      data-bs-target="#largeModal_<%=i%>">
+                                      <i class="bi bi-eye-fill"></i>
+                                    </a>
+
+
+                                  </td>
+
+                                  <!-- large Model Script -->
+
+                                  <div class="modal fade" id="largeModal_<%=i%>" tabindex="-1">
+                                    <div class="modal-dialog modal-lg">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title">
+                                            <%= product.title %>
+                                          </h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <%= product.description %>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                          <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <!-- Large Model Script End -->
+
+                                  <td>
+                                    <%= product.price %>
+                                  </td>
+                                  <td>
+                                    <%= (product.category) && product.category.name %>
+                                  </td>
+
+                                  <td class="green">
+                                    <a href="/products/edit/<%= product._id %>"><i class="bi bi-pencil-square"></i>
+                                    </a>
+                                  </td>
+                                  <td class="green text-center">
+                                    <a href="/products/delete/<%= product._id %>" class="DeleteOperation"><i
+                                        class="bi bi-file-earmark-x bi-xl"></i></a>
+                                  </td>
+                                </tr>
+
+                              </tbody>
+
+                              <% }) %>
+                                <% } else { %>
+                                  <tbody>
+                                    <tr data-index="0">
+                                      <td colspan="5">No Product Found</td>
+
+                                    </tr>
+                                    <% } %>
+
+
+                        </table>
+                      </div>
+
+                    </div>
+                    <!-- End Table with stripped rows -->
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+    </main>
+
+
+
+
+
+    <%- include('../footer') %>

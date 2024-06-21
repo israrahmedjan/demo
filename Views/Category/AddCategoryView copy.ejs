@@ -1,0 +1,35 @@
+<%- include('../header') %>
+  <%- include('../sidebar') %>
+
+    <main id="main" class="main">
+      <div>
+        <h1>Add Category Views..</h1>
+        <pre><%= JSON.stringify(previousdata.errors, null, 2) %></pre>
+        <pre><%= JSON.stringify(previousdata, null, 2) %></pre>
+
+
+
+        <div>
+          <form action="/Category/AddCategoryOperation" method="post">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title"
+              value="<%= previousdata.previousdata.title && previousdata.previousdata.title %>"><br><br>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description"><%= Prevdata.description %></textarea><br><br>
+
+
+            <br />
+
+            <br />
+            <input type="submit" value="Add Category" />
+          </form>
+
+        </div>
+
+
+      </div>
+
+    </main>
+
+
+    <%- include('../footer') %>

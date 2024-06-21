@@ -1,0 +1,157 @@
+<%- include('../header') %>
+  <%- include('../sidebar') %>
+
+
+    <main id="main" class="main">
+
+      <div class="pagetitle">
+        <h1>Add product</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item">Product</li>
+            <li class="breadcrumb-item active">Update</li>
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+
+
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Product Form</h5>
+
+
+
+                <% if (prevouseData.errors) { %>
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <ul class="list-group" style="background: none;">
+                      <% prevouseData.errors.map(function(error,i) { %>
+                        <li class="list-group-item" style="background: none;">
+                          <span>
+                            <%= i+1 %> -
+                          </span>
+                          <%= error %>
+                        </li>
+                        <% }); %>
+                    </ul>
+                  </div>
+                  <% } %>
+
+                    <!-- Multi Columns Form -->
+                    <form class="row g-3" action="/products/UpdateProduct" method="post">
+                      <div class="col-md-6">
+                        <label for="inputName5" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="inputName5" name="title"
+                          value="<%= prevouseData.product.title && prevouseData.product.title %>">
+                        <input type="hidden" id="productId" name="productId" value="<%= prevouseData.product._id %>">
+
+                      </div>
+                      <div class="col-md-6">
+                        <label for="inputEmail5" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="inputEmail5" name="price"
+                          value="<%= prevouseData.product.price && prevouseData.product.price %>">
+                      </div>
+
+                      <div class="col-12">
+                        <label for="inputAddress5" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="inputAddres5s" name="description"
+                          placeholder="1234 Main St"
+                          value="<%= prevouseData.product.description && prevouseData.product.description %>">
+                      </div>
+
+
+
+                      <div class="col-md-6">
+                        <label for="inputState" class="form-label">Category</label>
+                        <% if (prevouseData.category.length> 0) { %>
+                          <select id="category" name="category" class="form-select">
+
+                            <% prevouseData.category.map((cat, i)=> { %>
+
+                              <option value=<%=cat._id %>><%= cat.name %>
+                              </option>
+                              <% }) %>
+                          </select>
+                          <% } else { %>
+                            <p>Category not Availiable <a href="/category/Add">Add Category</a></p>
+                            <% } %>
+                      </div>
+
+
+
+                      <div class="col-md-6">
+                        <label for="inputState" class="form-label">brands</label>
+                        <% if (prevouseData.brand.length> 0) { %>
+                          <select id="brand" name="Brand" class="form-select">
+
+                            <% prevouseData.brand.map((brd, i)=> { %>
+
+                              <option value=<%=brd._id %>><%= brd.title %>
+                              </option>
+                              <% }) %>
+                          </select>
+                          <% } else { %>
+                            <p>brands not Availiable <a href="/brand/Add">Add Category</a></p>
+                            <% } %>
+                      </div>
+
+                      <h3>Additional information</h3>
+                      <div class="col-md-4">
+                        <label for="inputEmail5" class="form-label">Stock</label>
+                        <input type="number" class="form-control" id="inputEmail5" name="stock"
+                          value="<%= prevouseData.product.stock && prevouseData.product.stock %>">
+                      </div>
+                      <div class="col-md-4">
+                        <label for="inputEmail5" class="form-label">Discount Percentage</label>
+                        <input type="number" class="form-control" id="inputEmail5" name="discountPercentage"
+                          value="<%= prevouseData.product.discountPercentage && prevouseData.product.discountPercentage %>">
+                      </div>
+                      <div class="col-md-4">
+                        <label for="inputName5" class="form-label">SKU</label>
+                        <input type="text" class="form-control" id="inputName5" name="sku"
+                          value="<%= prevouseData.product.sku && prevouseData.product.sku %>">
+
+                      </div>
+
+
+
+                      <div class="col-12">
+                        <div class="form-check">
+
+                          <label class="form-check-label d-flex justify-content-between" for="gridCheck">
+                            <span>&nbsp;</span> <a href="/products/UpdateImages/<%= prevouseData.product._id %>"
+                              class="btn btn-secondary"><i class="bi bi-file-earmark-plus"></i>
+                              Update images</a>
+                          </label>
+
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div id="file-input-container">
+                        </div>
+                      </div>
+
+                      <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="reset" class="btn btn-secondary">Reset</button>
+                      </div>
+                    </form><!-- End Multi Columns Form -->
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+
+
+
+    <%- include('../footer') %>
