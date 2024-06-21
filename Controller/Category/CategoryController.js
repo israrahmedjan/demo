@@ -15,9 +15,10 @@ const CategoryListing = async (req, res) => {
     const Category = await CategoryModel.find(); // retrieves all Categorys
     // example, setting title
 
-    res.render('Category/CategoryView', { Category });
+    // res.render('Category/CategoryView', { Category });
     // console.log("testing....", Category)
-    return Category;
+    //return Category;
+    res.send(Category);
   } catch (err) {
     //console.error(err);
   }
@@ -35,7 +36,7 @@ const AddCategory = async (req, res) => {
   try {
     let previousdata = { errors: null, data: data };
 
-    return res.render('Category/AddCategoryView', { previousdata: previousdata });
+    //return res.render('Category/AddCategoryView', { previousdata: previousdata });
     //console.log("Category Views:")
   } catch (err) {
     res.send(`Server Error : ${err.message}`);
