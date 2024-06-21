@@ -99,13 +99,15 @@ app.get('/logout', (req, res) => {
 
 
 
-
+app.use(express.static('public'));
 app.get("/", (req, res) => {
-  res.send("Hello Home Page!", __dirname);
-  // if (!req.isAuthenticated()) {
+  // console.log('Dir Name');
+  // console.log(__dirname)
+  // res.send("Hello Home Page!");
+  // if (!req.isAuthenticated()) ,{
   //   return res.redirect('/user/login');
   // }
-  //res.render('HomeView');
+  res.render('HomeView');
 })
 
 app.use('/Products', ProductRouter);
@@ -117,9 +119,9 @@ app.use('/Brand', BrandRouter)
 
 
 
-app.get('/', (req, res) => {
-  res.send('Hello World file Welcome to hello programme!');
-});
+// app.get('/', (req, res) => {
+//   res.send('Hello World file Welcome to hello programme!');
+// });
 
 const port = 3000;
 app.listen(port, () => {
