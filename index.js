@@ -61,7 +61,7 @@ app.use(session({ secret: 'secret', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 // app.use((req, res, next) => {
-//   res.locals.user = req.user;
+//   res.locals.user = req.user;git
 //   next();
 // });
 
@@ -101,15 +101,11 @@ app.get('/logout', (req, res) => {
 
 
 app.get("/", (req, res) => {
-
   //res.send("Hello Home page 11111!");
   // if (!req.isAuthenticated()) {
   //   return res.redirect('/user/login');
   // }
-
   res.render('HomeView');
-
-
 })
 
 app.use('/Products', ProductRouter);
