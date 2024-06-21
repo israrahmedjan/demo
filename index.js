@@ -99,9 +99,7 @@ app.get('/logout', (req, res) => {
 
 
 
-app.use(express.static('public'));
-// Set EJS as templating engine
-app.set('view engine', 'ejs');
+
 app.get("/", (req, res) => {
   // console.log('Dir Name');
   // console.log(__dirname)
