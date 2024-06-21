@@ -100,6 +100,8 @@ app.get('/logout', (req, res) => {
 
 
 app.use(express.static('public'));
+// Set EJS as templating engine
+app.set('view engine', 'ejs');
 app.get("/", (req, res) => {
   // console.log('Dir Name');
   // console.log(__dirname)
@@ -107,8 +109,8 @@ app.get("/", (req, res) => {
   // if (!req.isAuthenticated()) ,{
   //   return res.redirect('/user/login');
   // }
-  res.send("Hello Home Page!");
-  //res.render('HomeView');
+  //res.send("Hello Home Page!");
+  res.render('HomeView');
 })
 
 app.use('/Products', ProductRouter);
