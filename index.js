@@ -103,11 +103,12 @@ app.use(express.static('public'));
 app.get("/", (req, res) => {
   // console.log('Dir Name');
   // console.log(__dirname)
-  // res.send("Hello Home Page!");
+
   // if (!req.isAuthenticated()) ,{
   //   return res.redirect('/user/login');
   // }
-  res.render('HomeView');
+  res.send("Hello Home Page!");
+  //res.render('HomeView');
 })
 
 app.use('/Products', ProductRouter);
