@@ -6,17 +6,17 @@ const path = require('path');
 
 const cloudinary = require('cloudinary').v2;
 
-// cloudinary.config({
-//   cloud_name: 'dozddxjyh',
-//   api_key: '688812823273888',
-//   api_secret: 'Xw3uv2nFRKjM0dqHPf7QCg1T2jQ'
-// });
-
 cloudinary.config({
-  cloud_name: process.env.CLOUD_API_NAME,
-  api_key: process.env.CLOUD_API_KEY,
-  api_secret: process.env.CLOUD_API_SECRET
+  cloud_name: 'dozddxjyh',
+  api_key: '688812823273888',
+  api_secret: 'Xw3uv2nFRKjM0dqHPf7QCg1T2jQ'
 });
+
+// cloudinary.config({
+//   cloud_name: process.env.CLOUD_API_NAME,
+//   api_key: process.env.CLOUD_API_KEY,
+//   api_secret: process.env.CLOUD_API_SECRET
+// });
 
 // File filter function to only accept JPEG and PNG images
 const fileFilter = (req, file, cb) => {
