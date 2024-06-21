@@ -102,12 +102,12 @@ app.get('/logout', (req, res) => {
 
 app.get("/", (req, res) => {
 
-  res.send("Hello Home page 11111!");
+  //res.send("Hello Home page 11111!");
   // if (!req.isAuthenticated()) {
   //   return res.redirect('/user/login');
   // }
 
-  // res.render('HomeView');
+  res.render('HomeView');
 
 
 })
