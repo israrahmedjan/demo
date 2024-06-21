@@ -60,18 +60,18 @@ app.use(cookieParser());
 app.use(session({ secret: 'secret', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use((req, res, next) => {
-  res.locals.user = req.user;
-  next();
-});
+// app.use((req, res, next) => {
+//   res.locals.user = req.user;
+//   next();
+// });
 
 
-app.get('/profile', (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.redirect('/login');
-  }
-  res.send(`<h1>Profile</h1><p>Hello, ${req.user.username}!</p><a href="/logout">Logout</a>`);
-});
+// app.get('/profile', (req, res) => {
+//   if (!req.isAuthenticated()) {
+//     return res.redirect('/login');
+//   }
+//   res.send(`<h1>Profile</h1><p>Hello, ${req.user.username}!</p><a href="/logout">Logout</a>`);
+// });
 
 
 app.get('/logout', (req, res) => {
@@ -93,9 +93,9 @@ app.get('/logout', (req, res) => {
 
 
 
-app.get("/myuploadfile", (req, res) => {
-  res.render('uploadFile');
-})
+// app.get("/myuploadfile", (req, res) => {
+//   res.render('uploadFile');
+// })
 
 
 
