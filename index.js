@@ -43,7 +43,6 @@ app.use(require('express-flash')())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
 //app.use(express.urlencoded({ extended: true })); // Middleware to parse request body
 //app.use(ProductRouter)
 app.use(cookieParser());
@@ -60,18 +59,18 @@ app.use(cookieParser());
 app.use(session({ secret: 'secret', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
-// app.use((req, res, next) => {
-//   res.locals.user = req.user;git
-//   next();
-// });
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
 
 
-// app.get('/profile', (req, res) => {
-//   if (!req.isAuthenticated()) {
-//     return res.redirect('/login');
-//   }
-//   res.send(`<h1>Profile</h1><p>Hello, ${req.user.username}!</p><a href="/logout">Logout</a>`);
-// });
+app.get('/profile', (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/login');
+  }
+  res.send(`<h1>Profile</h1><p>Hello, ${req.user.username}!</p><a href="/logout">Logout</a>`);
+});
 
 
 app.get('/logout', (req, res) => {
@@ -93,28 +92,36 @@ app.get('/logout', (req, res) => {
 
 
 
-// app.get("/myuploadfile", (req, res) => {
-//   res.render('uploadFile');
-// })
+app.get("/myuploadfile", (req, res) => {
+  res.render('uploadFile');
+})
 
 
 
 
 app.get("/", (req, res) => {
-  // console.log('Dir Name');
-  // console.log(__dirname)
 
-  // if (!req.isAuthenticated()) ,{
-  //   return res.redirect('/user/login');
-  // }
-  //res.send("Hello Home Page!");
+  //res.send("Hello Home page 11111!");
+  if (!req.isAuthenticated()) {
+    return res.redirect('/user/login');
+  }
+
   res.render('HomeView');
+
+
 })
 
 app.use('/Products', ProductRouter);
 app.use('/Category', CategoryRouter);
 app.use('/User', UserRouter);
 app.use('/Brand', BrandRouter)
+
+try {
+
+}
+catch (err) {
+  console.log("Router test Error")
+}
 
 
 
