@@ -101,11 +101,11 @@ app.get('/logout', (req, res) => {
 
 
 app.get("/", (req, res) => {
-  //res.send("Hello Home Page!");
+  res.send("Hello Home Page!", __dirname);
   // if (!req.isAuthenticated()) {
   //   return res.redirect('/user/login');
   // }
-  res.render('HomeView');
+  //res.render('HomeView');
 })
 
 app.use('/Products', ProductRouter);
