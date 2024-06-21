@@ -33,14 +33,14 @@ passport.deserializeUser((id, done) => {
 
 
 
-const UserLogin = passport.authenticate('local', { 
+const UserLogin = passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/User/login',
   passReqToCallback: true
-  }
+}
 );
 
 
 
 
-module.exports = {UserLogin}
+module.exports = { UserLogin }
