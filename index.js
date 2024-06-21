@@ -44,6 +44,83 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
+//app.use(express.urlencoded({ extended: true })); // Middleware to parse request body
+//app.use(ProductRouter)
+app.use(cookieParser());
+
+// Initialize connect-flash middleware
+
+
+
+// passport authentication
+
+
+// Middleware
+//app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({ secret: 'secret', resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
+
+
+app.get('/profile', (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/login');
+  }
+  res.send(`<h1>Profile</h1><p>Hello, ${req.user.username}!</p><a href="/logout">Logout</a>`);
+});
+
+
+app.get('/logout', (req, res) => {
+  req.logout(function (err) {
+    if (err) {
+      // handle error
+    } else {
+      // logout successful
+      res.redirect('/');
+    }
+  })
+
+});
+
+
+
+
+// Upload Operation End
+
+
+
+app.get("/myuploadfile", (req, res) => {
+  res.render('uploadFile');
+})
+
+
+
+
+app.get("/", (req, res) => {
+
+  // res.send("Hello Home page 11111!");
+  // if (!req.isAuthenticated()) {
+  //   return res.redirect('/user/login');
+  // }
+
+  res.render('HomeView');
+
+
+})
+
+app.use('/Products', ProductRouter);
+app.use('/Category', CategoryRouter);
+app.use('/User', UserRouter);
+app.use('/Brand', BrandRouter)
+
+
+
+
+
 app.get('/', (req, res) => {
   res.send('Hello World file Welcome to hello programme!');
 });
